@@ -30,6 +30,7 @@ def home():
     return render_template("home.html", user=current_user)
 
 @views.route('/reset-password', methods=['GET', 'POST'])
+
 def reset():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -52,9 +53,10 @@ def reset():
         flash('Password updated successfully!', 'success')
         return redirect(url_for('views.home'))
 
-    return render_template('reset-password.html')
+    return render_template('reset-password.html', user=current_user)
 
 @views.route('/delete-note', methods=['POST'])
+@login_required
 def delete_note():
     note = json.loads(request.data)
     noteId = note['noteId']
