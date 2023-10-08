@@ -11,6 +11,7 @@ class Note(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) #assign the note to correct user_id
 
     def formatted_date(self):
+        #set time zone to pacific
         pacific_timezone = pytz.timezone('US/Pacific')
         pacific_time = self.date.astimezone(pacific_timezone)
 
